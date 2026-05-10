@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hanggara — CS Student</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            ink:    '#09090f',
+            mist:   '#13131d',
+            veil:   '#1c1c2e',
+            silver: '#7c7c8e',
+            frost:  '#c8c8dc',
+            gold:   '#c9a96e',
+          },
+          keyframes: {
+            fadeUp:   { from: { opacity:'0', transform:'translateY(28px)' }, to: { opacity:'1', transform:'translateY(0)' } },
+            fadeIn:   { from: { opacity:'0' }, to: { opacity:'1' } },
+            orbDrift: {
+              '0%,100%': { transform:'translate(0,0) scale(1)' },
+              '33%':     { transform:'translate(28px,-18px) scale(1.04)' },
+              '66%':     { transform:'translate(-18px,14px) scale(0.97)' },
+            },
+            marquee:  { from:{ transform:'translateX(0)' }, to:{ transform:'translateX(-50%)' } },
+          },
+          animation: {
+            'fade-up':   'fadeUp 0.9s ease forwards',
+            'fade-in':   'fadeIn 0.7s ease forwards',
+            'orb-drift': 'orbDrift 14s ease-in-out infinite',
+            'marquee':   'marquee 28s linear infinite',
+          },
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-ink text-frost font-body overflow-x-hidden cursor-none">
+
+  <div class="grain-overlay"></div>
+  <div id="cursor"      class="cursor-dot"></div>
+  <div id="cursor-ring" class="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-16 py-5 mix-blend-difference">
+    <a href="#" class="font-display text-sm tracking-[0.45em] uppercase text-frost hover:opacity-80 transition-opacity">HGR</a>
+    <ul class="hidden md:flex gap-10 list-none">
+      <li><a href="#about"    class="nav-link">About</a></li>
+      <li><a href="#skills"   class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact"  class="nav-link">Contact</a></li>
+    </ul>
+    <button id="menu-btn" class="md:hidden flex flex-col gap-[5px] cursor-none p-1" aria-label="Open menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-ink/95 backdrop-blur-sm flex flex-col items-center justify-center gap-10 translate-x-full transition-transform duration-500">
+    <button id="menu-close" class="absolute top-6 right-6 text-silver text-2xl cursor-none">✕</button>
+    <a href="#about"    class="mobile-nav-link">About</a>
+    <a href="#skills"   class="mobile-nav-link">Skills</a>
+    <a href="#projects" class="mobile-nav-link">Projects</a>
+    <a href="#contact"  class="mobile-nav-link">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-16 overflow-hidden">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-orb animate-orb-drift"></div>
+
+    <div class="relative z-10 max-w-5xl">
+      <p class="text-[0.6rem] tracking-[0.5em] uppercase text-gold mb-5 opacity-0 animate-fade-in" style="animation-delay:0.2s;animation-fill-mode:forwards">
+        Computer Science · AMIKOM University · Yogyakarta
+      </p>
+      <h1 class="font-display text-[clamp(3.2rem,11vw,9rem)] leading-[0.88] font-normal text-frost opacity-0 animate-fade-up" style="animation-delay:0.45s;animation-fill-mode:forwards">
+        Hanggara<br>
+        <em class="text-frost/35 not-italic">Putra&nbsp;</em>Akbar
+      </h1>
+      <p class="mt-7 text-[0.65rem] tracking-[0.3em] uppercase text-silver opacity-0 animate-fade-in" style="animation-delay:0.95s;animation-fill-mode:forwards">
+        Student &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; Game Developer
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4 opacity-0 animate-fade-in" style="animation-delay:1.15s;animation-fill-mode:forwards">
+        <a href="#about"   class="btn-primary">Explore</a>
+        <a href="#contact" class="btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator opacity-0 animate-fade-in" style="animation-delay:1.7s;animation-fill-mode:forwards">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="bg-mist px-6 md:px-16 py-24 md:py-36">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+
+      <div class="reveal order-2 md:order-1">
+        <div class="about-card">
+          <div class="about-card-inner">
+            <img
+              src="photo.jpeg"
+              alt="Hanggara Putra Akbar"
+              class="about-photo"
+            />
+            <div class="about-badge">Sophomore · 2025</div>
+          </div>
+          <div class="about-card-border"></div>
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <p class="reveal section-label">About Me</p>
+        <h2 class="reveal font-display text-[clamp(2rem,4vw,3.2rem)] font-normal leading-tight text-frost mt-3 mb-6">
+          Exploring <em class="text-frost/45">code</em>,<br>crafting worlds
+        </h2>
+        <p class="reveal text-silver text-[0.85rem] leading-[1.9] mb-4">
+          Hi, I'm <span class="text-frost font-medium">L.M. Hanggara Putra Akbar</span> — a Computer Science student at
+          AMIKOM University in Yogyakarta. I'm in my sophomore year, learning how to turn ideas into functional, visual things on the web.
+        </p>
+        <p class="reveal text-silver text-[0.85rem] leading-[1.9] mb-8">
+          My interests pull me in two directions: the interactive world of
+          <span class="text-gold">web development</span> and the imaginative space of
+          <span class="text-gold">game development</span>. I'm still early in my journey but driven to keep learning and building.
+        </p>
+        <div class="reveal flex flex-wrap gap-2">
+          <span class="interest-tag">🌐 Web Dev</span>
+          <span class="interest-tag">🎮 Game Dev</span>
+          <span class="interest-tag">🎓 AMIKOM Univ.</span>
+          <span class="interest-tag">📍 Yogyakarta</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="overflow-hidden border-y border-gold/[0.07] py-5 bg-ink">
+    <div class="flex gap-14 animate-marquee whitespace-nowrap">
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+      <span class="marquee-item">HGR</span><span class="marquee-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills" class="bg-ink px-6 md:px-16 py-24 md:py-36">
+    <div class="max-w-6xl mx-auto">
+      <p class="reveal section-label mb-3">Technical Skills</p>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3.2rem)] font-normal text-frost mb-16 leading-tight">
+        What I'm <em class="text-frost/45">learning</em>
+      </h2>
+
+      <div class="grid sm:grid-cols-2 gap-px bg-gold/[0.06]">
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">&lt;/&gt;</div>
+          <div class="flex-1">
+            <h3 class="skill-title">HTML &amp; CSS</h3>
+            <p class="skill-desc">Building and styling web pages, learning responsive layouts, flexbox, grid, and UI components from scratch.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+            <span class="skill-badge">Learning</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">TW</div>
+          <div class="flex-1">
+            <h3 class="skill-title">Tailwind CSS</h3>
+            <p class="skill-desc">Utility-first CSS framework for rapidly building modern, consistent interfaces without writing custom stylesheets.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:50%"></div></div>
+            <span class="skill-badge">Learning</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">JS</div>
+          <div class="flex-1">
+            <h3 class="skill-title">JavaScript</h3>
+            <p class="skill-desc">Adding interactivity and logic to web pages — exploring DOM manipulation, events, and functions.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:40%"></div></div>
+            <span class="skill-badge">Beginner</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-icon">Py</div>
+          <div class="flex-1">
+            <h3 class="skill-title">Python</h3>
+            <p class="skill-desc">General-purpose scripting and programming fundamentals — variables, loops, functions, and basic logic.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:45%"></div></div>
+            <span class="skill-badge">Beginner</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="bg-mist px-6 md:px-16 py-24 md:py-36">
+    <div class="max-w-6xl mx-auto">
+      <p class="reveal section-label mb-3">Projects</p>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3.2rem)] font-normal text-frost mb-4 leading-tight">
+        Work &amp; <em class="text-frost/45">Practice</em>
+      </h2>
+      <p class="reveal text-silver text-[0.85rem] leading-loose mb-16 max-w-lg">
+        Still early in my journey — no shipped projects yet, but actively building and learning every day.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-px bg-gold/[0.06]">
+
+        <div class="project-card reveal">
+          <div class="status-badge in-progress">In Progress</div>
+          <h3 class="project-title">Personal Portfolio</h3>
+          <p class="project-desc">This site — designed and coded from scratch as a hands-on exercise in HTML, Tailwind CSS, and JavaScript.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">Tailwind</span>
+            <span class="project-tag">JS</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="status-badge exploring">Exploring</div>
+          <h3 class="project-title">Web Fundamentals</h3>
+          <p class="project-desc">Working through small exercises — forms, landing pages, and interactive components — to build a solid foundation.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="status-badge planned">Planned</div>
+          <h3 class="project-title">Game Prototype</h3>
+          <p class="project-desc">Planning a simple 2D browser game to combine programming logic with creative storytelling and game mechanics.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">Canvas</span>
+            <span class="project-tag">Python</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="bg-ink px-6 md:px-16 py-28 md:py-40 text-center">
+    <div class="max-w-2xl mx-auto">
+      <p class="reveal section-label justify-center mb-4">Contact</p>
+      <h2 class="reveal font-display text-[clamp(2.8rem,8vw,6.5rem)] font-normal text-frost leading-[0.92] mb-6">
+        Let's <em class="text-frost/35">connect</em>
+      </h2>
+      <p class="reveal text-silver text-[0.85rem] leading-loose mb-12 max-w-sm mx-auto">
+        Always happy to learn from others, collaborate on side projects, or just chat about tech and games.
+      </p>
+
+      <!-- ⬇ Replace href values with your real links -->
+      <div class="reveal flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a href="putraa.bar9@gmail.com"             class="btn-primary">✉ Email Me</a>
+        <a href="https://github.com/agashesh"   target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+      </div>
+
+      <ul class="reveal flex flex-wrap justify-center gap-8 list-none">
+        <li><a href="https://www.instagram.com/lamuhpa" class="contact-social-link">Instagram</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gold/[0.07] px-6 md:px-16 py-6 flex flex-col sm:flex-row justify-between items-left gap-2">
+    <span class="footer-text">© 2025 L.M. Hanggara Putra Akbar</span>
+    <span class="footer-text">Computer Science · AMIKOM University · Yogyakarta</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
